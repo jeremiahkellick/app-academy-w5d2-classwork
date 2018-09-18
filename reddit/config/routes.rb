@@ -1,0 +1,10 @@
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'application#index'
+  resources :users, only: [:new, :create]
+  resource :session, only: [:new, :create, :destroy]
+  resources :subs do 
+    resources :posts, only: [:new, :create]
+  end 
+  resources :subs, except: [:new, :create, :index]
+end
