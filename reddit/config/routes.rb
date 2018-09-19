@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   root 'application#index'
   resources :users, only: [:new, :create]
   resource :session, only: [:new, :create, :destroy]
-  resources :subs do 
-    resources :posts, only: [:new, :create]
+  resources :subs 
+  resources :posts, except: [:index] do 
+    resources :comments, only: [:create]
   end 
-  resources :subs, except: [:new, :create, :index]
+  resources :comments, only: [:destroy]
+  
 end

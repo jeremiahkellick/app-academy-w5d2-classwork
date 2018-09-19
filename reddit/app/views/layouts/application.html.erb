@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <p><a href="<%=subs_url%>">Home</a></p> 
     <% if logged_in? %>
       <p> Welcome back, <%= current_user.username %></p> 
       <form class="" action="<%=session_url%>" method="post">
@@ -21,6 +22,8 @@
       <a href="<%=new_session_url%>">Sign In</a>
       <a href="<%=new_user_url%>">Sign Up</a>
     <% end %>
+    
+    <%= flash[:errors] %>
     <%= yield %>
   </body>
 </html>

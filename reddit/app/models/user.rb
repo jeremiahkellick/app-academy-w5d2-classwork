@@ -6,7 +6,9 @@ class User < ApplicationRecord
   
   has_many :subs
   
+  has_many :posts
   
+  has_many :comments
   def self.find_by_credential(username, password)
     user = User.find_by(username: username)
     user && user.is_password?(password) ? user : nil 

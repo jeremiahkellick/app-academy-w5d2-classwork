@@ -5,4 +5,21 @@
 <p><a href="<%=edit_sub_url(@sub)%>">Edit Sub</a></p> 
 <a href="<%=subs_url%>">All the Subs</a>
 
+<h2>Posts</h2>
+<a href="<%=new_post_url%>">Add a Post!</a>
+<ul>
+  <%@sub.posts.each do |post|%> 
+    <li><a href="<%=post_url(post)%>"><%= post.title %></a>
+      <form class="" action="<%=post_url(post)%>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="_method" value="delete">
+        
+        <input type="submit" value="Delete Post">
+      </form>
+    </li>
+    
+  <% end %>
+</ul>
+
+
 

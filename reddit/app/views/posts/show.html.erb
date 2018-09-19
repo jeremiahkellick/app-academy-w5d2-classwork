@@ -1,0 +1,28 @@
+<h1><%=@post.title%></h1>
+<p>Url: <%=@post.url%></p>
+<p>Content: <%=@post.content%></p>
+<p>Author: <%=@post.author.username%></p>
+<p><a href="<%=edit_post_url(@post)%>">Edit Post</a></p> 
+
+<h2>Subs</h2>
+<ul>
+  <% @post.subs.each do |subreddit| %>
+    <li><a href="<%=sub_url(subreddit)%>"><%= subreddit.title %></a></li>
+  <% end %>
+</ul>
+
+<h2>Comments</h2>
+<ul>
+  <%=render @post.comments.where(parent_comment_id: nil) %>
+</ul>
+
+<h3>Add Comment</h3>
+  <form action="<%=post_comments_url(@post)%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <label>Comment: <textarea name="comment[content]" rows="8" cols="80"></textarea> </label>
+    <input type="submit" name="" value="Add Comment">
+  </form>
+
+
+
+

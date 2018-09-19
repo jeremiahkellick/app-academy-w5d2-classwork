@@ -1,0 +1,23 @@
+<h1>Create a Post</h1>
+<form action="<%=posts_url%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  
+  <label>Title:<input type="text" name="post[title]" value="<%=@post.title%>"> </label>
+  <br>
+  
+  <label>Url:<input type="text" name="post[url]" value="<%=@post.url%>"> </label>
+  <br>
+  
+  <label>Content:
+    <br>
+    <textarea name="post[content]" rows="8" cols="80"><%=@post.content%></textarea> </label>
+  <br>
+  
+  <h2>Associated Subs</h2>
+  <% Sub.all.each do |subreddit| %>
+    <li><input type="checkbox" name="post[sub_ids][]" value="<%=subreddit.id%>"><%=subreddit.title%></li> 
+  <% end %>  
+    
+  
+  <input type="submit" value="Create Post">
+</form>
